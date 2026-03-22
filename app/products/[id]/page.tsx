@@ -1,9 +1,12 @@
 import Link from "next/link";
-import { products } from "../../data/products";
+import { Product } from "../../types/product";
 
 const ProductDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
     const resolvedParams = await params;
-    const product = products.find((p) => p.id === parseInt(resolvedParams.id));
+    const res = await fetch(`http://localhost:3000/api/products/${resolvedParams.id}`, {
+        cache: "no-store", // har safar fresh data
+    });
+    const product: Product = await res.json();
     
     return (
         <div>

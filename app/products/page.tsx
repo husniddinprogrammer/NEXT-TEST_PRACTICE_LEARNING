@@ -1,9 +1,13 @@
 import Link from "next/link"
 import { ProductCard } from "../components/ProductCard"
-import { products } from "../data/products";
+import { Product } from "../types/product";
 
-const Products = () => {
-    
+const Products = async () => {
+    const res = await fetch("http://localhost:3000/api/products", {
+        cache: "no-store", // har safar fresh data
+    });
+    const products: Product[] = await res.json();
+
     return (
         <div className="container mx-auto px-4 py-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-8">Products</h1>
