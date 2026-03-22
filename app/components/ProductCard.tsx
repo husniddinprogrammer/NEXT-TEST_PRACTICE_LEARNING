@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Product } from '@/app/types/product';
+import Image from 'next/image';
 
 interface ProductCardProps {
   product: Product;
@@ -9,10 +10,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300 p-6 border border-gray-200">
       <div className="aspect-square bg-gray-100 rounded-lg mb-4 overflow-hidden">
-        <img 
+        <Image 
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-300" 
           src={`https://picsum.photos/seed/product-${product.id}/600/600.jpg`}
           alt={product.name}
+          width={600}
+          height={600}
         />
       </div>
       

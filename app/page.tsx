@@ -1,5 +1,11 @@
 import Link from "next/link";
 
+export async function generateMetadata() {
+  return {
+    title: "Home",
+  };
+}
+
 export default function Home() {
   
   return (

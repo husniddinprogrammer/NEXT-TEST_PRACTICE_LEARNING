@@ -1,5 +1,15 @@
 import Link from "next/link";
 import { Product } from "../../types/product";
+type Props = {
+    params: Promise<{ id: string }>;
+};
+
+export async function generateMetadata({ params }: Props) {
+    const id = (await params).id;
+    return {
+        title: `Product ${id}`,
+    };
+}
 
 const ProductDetail = async ({ params }: { params: Promise<{ id: string }> }) => {
     const resolvedParams = await params;
@@ -7,7 +17,7 @@ const ProductDetail = async ({ params }: { params: Promise<{ id: string }> }) =>
         cache: "no-store", // har safar fresh data
     });
     const product: Product = await res.json();
-    
+
     return (
         <div>
             <h1>Product Detail</h1>
